@@ -1,0 +1,6 @@
+node_modules/
+dist/
+coverage/
+.kiro-constructs.out/
+.kiro-constructs.cache/
+*.tsbuildinfo

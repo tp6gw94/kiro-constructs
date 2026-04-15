@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "packages/kiro-constructs" },
+    { "path": "packages/kiro-constructs/tsconfig.test.json" }
+  ]
+}
