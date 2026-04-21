@@ -2,12 +2,6 @@
 
 A TypeScript framework for defining [Kiro](https://kiro.dev) agentic configurations using CDK-style constructs. Enables composability, reusability, and type safety for AI agent configuration.
 
-## Installation
-
-```bash
-npm install @kiro/constructs constructs
-```
-
 ## Quick Start
 
 ```typescript
