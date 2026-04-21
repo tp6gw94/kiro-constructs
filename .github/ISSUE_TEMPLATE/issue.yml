@@ -1,0 +1,29 @@
+name: Issue
+description: Report a bug, request a feature, or propose a change
+labels: []
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - feature
+        - bug
+        - chore
+        - docs
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What do you need or what went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Steps to reproduce, examples, or related issues
+    validations:
+      required: false
