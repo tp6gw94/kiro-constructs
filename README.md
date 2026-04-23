@@ -2,6 +2,26 @@
 
 A TypeScript framework for defining [Kiro](https://kiro.dev) agentic configurations using CDK-style constructs. Enables composability, reusability, and type safety for AI agent configuration.
 
+## Installation
+
+> **Note:** This package is not yet published to npm. Install from source:
+
+```bash
+git clone https://github.com/kirodotdev-labs/constructs.git
+cd constructs
+npm install
+npm run build
+cd packages/kiro-constructs
+npm link
+```
+
+Then in your project, link the package and install the required `constructs` peer dependency:
+
+```bash
+npm link @kiro/constructs
+npm install constructs
+```
+
 ## Quick Start
 
 ```typescript
