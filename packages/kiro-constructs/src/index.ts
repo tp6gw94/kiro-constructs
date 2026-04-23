@@ -1,6 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 export { App, type AppProps } from './app.js';
 export { Assembly, type IAssembly } from './synthesis/assembly.js';
 export { Source, type ISource } from './synthesis/source.js';
@@ -15,3 +12,17 @@ export { KiroCliProvider, type KiroCliProviderProps } from './providers/kiro-cli
 export { BedrockProvider, type BedrockProviderProps } from './providers/bedrock-provider.js';
 export { Logger, ConsoleLogger, type ILogger } from './logger.js';
 export { packageDir } from './package-dir.js';
+export {
+  type ToolConfig,
+  BuiltInTool,
+  type AllToolsProps,
+  type BuiltInToolProps,
+  type ShellToolProps,
+  type PathToolProps,
+  type PathToolWithReadOnlyProps,
+  Shell,
+  type IShellPermission,
+} from './tools/index.js';
+export { Agent, type AgentProps } from './agent.js';
+export { Skill, type SkillProps } from './skill.js';
+export { Prompt, type PromptProps } from './prompt.js';
