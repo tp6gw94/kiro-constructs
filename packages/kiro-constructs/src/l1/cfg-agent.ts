@@ -38,12 +38,24 @@ export class CfgAgent extends Construct implements ISynthesizable {
 }
 
 export namespace CfgAgent {
-  export interface McpServerProperty {
+  export interface McpLocalServerProperty {
     readonly command: string;
     readonly args?: string[];
     readonly env?: Record<string, string>;
     readonly timeout?: number;
+    readonly disabled?: boolean;
+    readonly disabledTools?: string[];
   }
+
+  export interface McpRemoteServerProperty {
+    readonly url: string;
+    readonly headers?: Record<string, string>;
+    readonly env?: Record<string, string>;
+    readonly disabled?: boolean;
+    readonly disabledTools?: string[];
+  }
+
+  export type McpServerProperty = McpLocalServerProperty | McpRemoteServerProperty;
 
   export interface ResourceProperty {
     readonly type: 'knowledgeBase';

@@ -96,6 +96,28 @@ describe('Agent', () => {
     expect(config).not.toHaveProperty('resources');
   });
 
+  it('addMcpServer supports remote server config', async () => {
+    const app = new App({ outdir });
+    const agent = new Agent(app, 'dev', { description: 'Dev' });
+    agent.addMcpServer('api', { url: 'https://api.example.com/mcp', headers: { Authorization: 'Bearer token' } });
+    const config = await synthAgent(app, 'dev');
+    expect((config.mcpServers as Record<string, unknown>).api).toEqual({
+      url: 'https://api.example.com/mcp',
+      headers: { Authorization: 'Bearer token' },
+    });
+  });
+
+  it('addMcpServer supports mixed local and remote servers', async () => {
+    const app = new App({ outdir });
+    const agent = new Agent(app, 'dev', { description: 'Dev' });
+    agent.addMcpServer('local', { command: 'my-server' });
+    agent.addMcpServer('remote', { url: 'https://api.example.com/mcp' });
+    const config = await synthAgent(app, 'dev');
+    const mcpServers = config.mcpServers as Record<string, unknown>;
+    expect(mcpServers.local).toEqual({ command: 'my-server' });
+    expect(mcpServers.remote).toEqual({ url: 'https://api.example.com/mcp' });
+  });
+
   it('addSkill adds skill:// resource and addPrompt adds file:// resource', async () => {
     const app = new App({ outdir });
     const skill = new Skill(app, 'ts', { description: 'TS', instructions: '# TS' });

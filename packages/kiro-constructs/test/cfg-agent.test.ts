@@ -43,6 +43,42 @@ describe('CfgAgent', () => {
       },
     });
   });
+
+  it('synthesizes remote MCP server config', async () => {
+    const app = new App({ outdir });
+    new CfgAgent(app, 'remote', {
+      description: 'Remote',
+      mcpServers: {
+        'remote-api': { url: 'https://example.com/mcp', headers: { Authorization: 'Bearer token' } },
+      },
+    });
+    await app.synth();
+    const config = JSON.parse(
+      fs.readFileSync(path.join(outdir, 'agents', 'remote.json'), 'utf-8'),
+    ) as Record<string, unknown>;
+    expect(config.mcpServers).toEqual({
+      'remote-api': { url: 'https://example.com/mcp', headers: { Authorization: 'Bearer token' } },
+    });
+  });
+
+  it('synthesizes mixed local and remote MCP servers', async () => {
+    const app = new App({ outdir });
+    new CfgAgent(app, 'mixed', {
+      description: 'Mixed',
+      mcpServers: {
+        local: { command: 'my-server', args: ['--flag'] },
+        remote: { url: 'https://example.com/mcp' },
+      },
+    });
+    await app.synth();
+    const config = JSON.parse(
+      fs.readFileSync(path.join(outdir, 'agents', 'mixed.json'), 'utf-8'),
+    ) as Record<string, unknown>;
+    expect(config.mcpServers).toEqual({
+      local: { command: 'my-server', args: ['--flag'] },
+      remote: { url: 'https://example.com/mcp' },
+    });
+  });
 });
 
 describe('CfgPrompt', () => {
